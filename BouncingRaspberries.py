@@ -153,6 +153,8 @@ def text_objects(message, textDef):
 def learn_the_code():
     learnTheCode = True
     screen.blit(background, (0,0))
+    codeImages = ["Screenshot_1", "Screenshot_1", "Screenshot_2", "Screenshot_3", "Screenshot_4", "Screenshot_5", "Screenshot_6", "Screenshot_7", "Screenshot_8", "Screenshot_9", "Screenshot_10", "Screenshot_11", "Screenshot_12", "Screenshot_13", "Screenshot_14", "Screenshot_15", "Screenshot_16", "Screenshot_17"]
+    imageToDisplay = 0 #sets which image will be shown
     while learnTheCode:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -161,10 +163,27 @@ def learn_the_code():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_b:
                     main_menu()
+                if event.key == pygame.K_RIGHT:
+                    if imageToDisplay < 17:
+                        screen.blit(background, (0,0))
+                        imageToDisplay += 1 #changes the image displayed to the next one
+                    else:
+                        coding_Choice()
+                if event.key == pygame.K_LEFT:
+                    if imageToDisplay != 0:
+                        screen.blit(background, (0,0))
+                        imageToDisplay -= 1 #changes the image displayed to the previous one
+                    else:
+                        coding_Choice() #returns to main menu if on first image
                 if event.key == pygame.K_q:
                     pygame.quit()
-    pygame.display.update()
+        codeURL = codeImages[imageToDisplay] + ".png"
+        codeFile = codeURL
+        code = pygame.image.load(codeFile).convert()
+        screen.blit(code, (100,100))
+        pygame.display.update()
 
+#Getters and setters
 def setFoundPlayerVelocity(PV):
     global foundPV
     foundPV = PV
@@ -308,7 +327,7 @@ def change_the_code():
         menuButtons(((display_width/2) - (button_width/2)), (((display_height - (display_height/6) * 2)) + button_height), button_width, button_height, green)
         TextRect5.center = (((display_width/2)), (button_height + (button_height/2) + ((display_height/6) * 4)))
         
-        menuButtons((display_width/33), (display_height - 800), score_width, score_height, red)
+        menuButtons((display_width/18), (display_height - 800), score_width, score_height, red)
         TextRect6.center = (((display_width/12) + (score_width/4)), (display_height - 800) + (score_height/2))
         
         #adds all text to screen for above code
@@ -642,10 +661,10 @@ def high_scores_screen():
     screen.blit(background, (0,0))
     textDef = pygame.font.Font('freesansbold.ttf',15)
     
-    TextSurf, TextRect = text_objects("(B)ack", textDef)
-    menuButtons((display_width/12), (display_height - 800), (score_width/2), score_height, yellow)
-    TextRect.center = (((display_width/12) + (score_width/4)), (display_height - 800) + (score_height/2))
-    screen.blit(TextSurf, TextRect)
+    #TextSurf, TextRect = text_objects("(B)ack", textDef)
+    #menuButtons((display_width/12), (display_height - 800), (score_width/2), score_height, yellow)
+    #TextRect.center = (((display_width/12) + (score_width/4)), (display_height - 800) + (score_height/2))
+    #screen.blit(TextSurf, TextRect)
     
     #Checks the length of the list and will create a rectangle with the score and it's position up to 10 elements within the scores list
     if len(sortedScores)>0:
