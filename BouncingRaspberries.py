@@ -50,9 +50,9 @@ playerImg = pygame.image.load('logo.png') #setting the image to use as the playe
 def player(x,y):
     screen.blit(playerImg, (x,y)) #puts the user's player icon onto the screen
 
-def gameOver(): #Will have a parameter of the user's name
+def gameOver():
     text_file = open("HighScores.txt", "a") #opens the high scores file in 'add' mode
-    text_file.write("User's name will be entered here: {0} \n".format(getTickCounter())) #writes the user's name and their score into the file
+    text_file.write("User's name will be entered here: {0} \n".format(getTickCounter())) #writes the score into the file
     text_file.close() #closes the file
     resetTickCounter() #reset game tick for next game
     message_display('Game Over')
@@ -76,7 +76,7 @@ def message_display(message):
 
     main_menu()
     
-def display_hi_score(score): #a simle function to get the game's current tick and display it as the user's score
+def display_hi_score(score): #a simple function to get the game's current tick and display it as the user's score
     textDef = pygame.font.Font('freesansbold.ttf',12)
     TextSurf, TextRect = text_objects("Score: " + score, textDef)
     TextRect.center = (50,50)
@@ -637,7 +637,7 @@ def high_scores_screen():
     for item in hiScores:
         score = item.split()
         intScore = score[-1]
-        numHiScores.append(int(float(intScore))) #work out how to add name to sorted list at some point
+        numHiScores.append(int(float(intScore)))
     sortedScores = sorted(numHiScores, key=int, reverse=True)
     screen.blit(background, (0,0))
     textDef = pygame.font.Font('freesansbold.ttf',15)
