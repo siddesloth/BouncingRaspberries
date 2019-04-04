@@ -4,10 +4,10 @@ from pygame.locals import *
 
 pygame.init()
 
-display_width = 838
+display_width = 1676
 display_height = 837
 
-player_width = 79
+player_width = 75
 player_height = 10
 
 button_width = 400
@@ -39,7 +39,7 @@ pygame.display.set_caption('Bouncing Raspberries')
 
 clock = pygame.time.Clock()
 
-backgroundfile = "cloudbackground.png"
+backgroundfile = "cloudbackgroundLarge.png"
 platformOneFile = "platform2.png"
 
 background = pygame.image.load(backgroundfile).convert() #setting the image to use as the background
@@ -74,7 +74,7 @@ def message_display(message):
 
     time.sleep(5)
 
-    game_loop()
+    main_menu()
     
 def display_hi_score(score): #a simle function to get the game's current tick and display it as the user's score
     textDef = pygame.font.Font('freesansbold.ttf',12)
@@ -125,6 +125,14 @@ def platformThree(platformsX, platformsY, platformsW, platformsH, colour):
     pygame.draw.rect(screen, red, [platformsX, (platformsY - 10), platformsW, (platformsH/5)])
     
 def platformFour(platformsX, platformsY, platformsW, platformsH, colour):
+    pygame.draw.rect(screen, colour, [platformsX, platformsY, platformsW, platformsH])
+    pygame.draw.rect(screen, red, [platformsX, (platformsY - 10), platformsW, (platformsH/5)])
+    
+def platformFive(platformsX, platformsY, platformsW, platformsH, colour):
+    pygame.draw.rect(screen, colour, [platformsX, platformsY, platformsW, platformsH])
+    pygame.draw.rect(screen, red, [platformsX, (platformsY - 10), platformsW, (platformsH/5)])
+    
+def platformSix(platformsX, platformsY, platformsW, platformsH, colour):
     pygame.draw.rect(screen, colour, [platformsX, platformsY, platformsW, platformsH])
     pygame.draw.rect(screen, red, [platformsX, (platformsY - 10), platformsW, (platformsH/5)])
     
@@ -785,10 +793,14 @@ def game_loop():
     platform_startX2 = random.randrange(0, display_width) #...
     platform_startX3 = random.randrange(0, display_width)
     platform_startX4 = random.randrange(0, display_width)
+    platform_startX5 = random.randrange(0, display_width)
+    platform_startX6 = random.randrange(0, display_width)
     platform_startY1 = -600 #choosing how far off the screen the platforms start
     platform_startY2 = -900
     platform_startY3 = -300
     platform_startY4 = -1100
+    platform_startY5 = -1200
+    platform_startY6 = -750
     platform_speed = int(float(allVariables[1])) #speed at which the platforms 'fall'
     platform_width = int(float(allVariables[2])) #width of platforms
     platform_height = int(float(allVariables[3])) #height of platforms
@@ -847,11 +859,16 @@ def game_loop():
         platformTwo(platform_startX2, platform_startY2, platform_width, platform_height, fullPlatColour)
         platformThree(platform_startX3, platform_startY3, platform_width, platform_height, fullPlatColour)
         platformFour(platform_startX4, platform_startY4, platform_width, platform_height, fullPlatColour)
+        platformFive(platform_startX5, platform_startY5, platform_width, platform_height, fullPlatColour)
+        platformSix(platform_startX6, platform_startY6, platform_width, platform_height, fullPlatColour)
+        
         #moves all platforms down the screen via their speed variable
         platform_startY1 += platform_speed
         platform_startY2 += platform_speed
         platform_startY3 += platform_speed
         platform_startY4 += platform_speed
+        platform_startY5 += platform_speed
+        platform_startY6 += platform_speed
             
         player(x,y) #draws the player
         
@@ -886,6 +903,14 @@ def game_loop():
         if platform_startY4 > display_height:
             platform_startY4 = 0 - platform_height
             platform_startX4 = random.randrange(0,display_width)
+            
+        if platform_startY5 > display_height:
+            platform_startY5 = 0 - platform_height
+            platform_startX5 = random.randrange(0,display_width)
+            
+        if platform_startY6 > display_height:
+            platform_startY6 = 0 - platform_height
+            platform_startX6 = random.randrange(0,display_width)
             
         #Start of collision code for platform one
         if y < platform_startY1 + platform_height and y > platform_startY1 - (platform_height + (platform_height/5)):
@@ -938,6 +963,32 @@ def game_loop():
                 t = t1
                 gameOver()
         #End of collision code for platform four
+        
+        #Start of collision code for platform five
+        if y < platform_startY5 + platform_height and y > platform_startY5 - (platform_height + (platform_height/5)):
+            if x > platform_startX5 and x < platform_startX5 + platform_width or x + player_width > platform_startX5 and x + player_width < platform_startX5 + platform_width:
+                setPlayerVelocity(platform_speed)
+                setIfJumped(False)
+
+        if y < platform_startY5 + platform_height and y > platform_startY5 - platform_height:
+
+            if x > platform_startX5 and x < platform_startX5 + platform_width or x + player_width > platform_startX5 and x + player_width < platform_startX5 + platform_width:
+                t = t1
+                gameOver()
+        #End of collision code for platform five
+                
+        #Start of collision code for platform six
+        if y < platform_startY6 + platform_height and y > platform_startY6 - (platform_height + (platform_height/5)):
+            if x > platform_startX6 and x < platform_startX6 + platform_width or x + player_width > platform_startX6 and x + player_width < platform_startX6 + platform_width:
+                setPlayerVelocity(platform_speed)
+                setIfJumped(False)
+
+        if y < platform_startY6 + platform_height and y > platform_startY6 - platform_height:
+
+            if x > platform_startX6 and x < platform_startX6 + platform_width or x + player_width > platform_startX6 and x + player_width < platform_startX6 + platform_width:
+                t = t1
+                gameOver()
+        #End of collision code for platform six
             
         pygame.display.update()
             
