@@ -54,10 +54,11 @@ def player(x,y):
 
 def gameOver(): #Will have a parameter of the user's name
     text_file = open("HighScores.txt", "a") #opens the high scores file in 'add' mode
-    text_file.write("User's name will be entered here: {0} \n".format(getTickCounter())) #writes the user's name and their score into the file
+    text_file.write("Player's score is: {0} \n".format(getTickCounter())) #writes the user's score into the file
     text_file.close() #closes the file
+    achievedScore = getTickCounter()
     resetTickCounter() #reset game tick for next game
-    message_display('Game Over')
+    message_display("Game Over! You scored: {0}".format(achievedScore))
     
 def getHighScores():
     hiScores = []

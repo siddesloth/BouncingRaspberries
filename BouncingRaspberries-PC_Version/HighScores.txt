@@ -1,30 +1,13 @@
-User's name will be entered here: 354
-User's name will be entered here: 215 
-User's name will be entered here: 651 
-User's name will be entered here: 203 
-User's name will be entered here: 187 
-User's name will be entered here: 300 
-User's name will be entered here: 546 
-User's name will be entered here: 989
-User's name will be entered here: 354 
-User's name will be entered here: 190 
-User's name will be entered here: 1290  
-User's name will be entered here: 233 
-User's name will be entered here: 1170 
-User's name will be entered here: 994 
-User's name will be entered here: 589 
-User's name will be entered here: 570 
-User's name will be entered here: 577 
-User's name will be entered here: 712 
-User's name will be entered here: 571 
-User's name will be entered here: 688 
-User's name will be entered here: 929 
-User's name will be entered here: 563 
-User's name will be entered here: 1867 
-User's name will be entered here: 432 
-User's name will be entered here: 376 
-User's name will be entered here: 456 
-User's name will be entered here: 1209 
-User's name will be entered here: 1479 
-User's name will be entered here: 285 
-User's name will be entered here: 253 
+Player's score is: 354
+Player's score is: 215 
+Player's score is: 651 
+Player's score is: 203 
+Player's score is: 187 
+Player's score is: 300 
+Player's score is: 546 
+Player's score is: 989
+Player's score is: 354 
+Player's score is: 190 
+Player's score is: 1290  
+Player's score is: 233 
+Player's score is: 1170
